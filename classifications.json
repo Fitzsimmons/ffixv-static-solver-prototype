@@ -1,0 +1,9 @@
+{
+	"ranged dps": ["BRD", "MCH", "DNC", "BLM", "RDM", "SMN"],
+	"melee dps": ["DRG", "MNK", "SAM", "NIN", "RPR"],
+	"tank": ["GNB", "PLD", "WAR", "DRK"],
+	"barrier healer": ["SCH", "SGE"],
+	"pure healer": ["WHM", "AST"],
+	"mage": ["BLM", "RDM", "SMN"],
+	"ranged physical": ["DNC", "BRD", "MCH"]
+}
