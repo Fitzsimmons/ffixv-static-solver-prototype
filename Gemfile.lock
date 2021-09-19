@@ -38,10 +38,11 @@ GEM
 
 PLATFORMS
   ruby
+  x64-mingw32
 
 DEPENDENCIES
   rspec
   rubocop
 
 BUNDLED WITH
-   2.1.4
+   2.2.27

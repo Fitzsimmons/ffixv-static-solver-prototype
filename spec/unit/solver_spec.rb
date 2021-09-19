@@ -11,16 +11,16 @@ describe Solver do
     }
   }
 
-  it "finds a solution when everyone only supplies one job" do
+  it "finds a solution" do
     job_preferences = {
-      "Yorvo Hawke": ["DRG"],
-      "Squidgy Bunny": ["NIN"],
-      "Renfleur Orinoux": ["DRK"],
-      "Zelle Tamjin": ["PLD"],
-      "Era Dere": ["WHM"],
+      "Yorvo Hawke": ["DRG", "GNB"],
+      "Squidgy Bunny": ["NIN", "SMN", "WHM", "PLD"],
+      "Renfleur Orinoux": ["DRK", "SAM"],
+      "Zelle Tamjin": ["PLD", "BLM"],
+      "Era Dere": ["WHM", "DNC"],
       "Brando Id": ["SCH"],
-      "Alleriana Valyrian": ["RDM"],
-      "Reye Fenris": ["BRD"],
+      "Alleriana Valyrian": ["RDM", "BLM"],
+      "Reye Fenris": ["BRD", "DRG"],
     }
 
     expected = {
