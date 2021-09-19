@@ -4,6 +4,7 @@
 	"tank": ["GNB", "PLD", "WAR", "DRK"],
 	"barrier healer": ["SCH", "SGE"],
 	"pure healer": ["WHM", "AST"],
+	"healer": ["WHM", "AST", "SCH", "SGE"],
 	"mage": ["BLM", "RDM", "SMN"],
 	"ranged physical": ["DNC", "BRD", "MCH"]
 }

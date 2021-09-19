@@ -25,7 +25,7 @@ describe Solver do
       "Reye Fenris": ["BRD", "DRG"],
     }
 
-    expected = {
+    expected = [{
       "Yorvo Hawke": "DRG",
       "Squidgy Bunny": "NIN",
       "Renfleur Orinoux": "DRK",
@@ -34,7 +34,7 @@ describe Solver do
       "Brando Id": "SCH",
       "Alleriana Valyrian": "RDM",
       "Reye Fenris": "BRD",
-    }
+    }]
 
     expect(Solver.solve(desired_composition: basic_composition, job_preferences: job_preferences)).to eq(expected)
   end
@@ -45,7 +45,7 @@ describe Solver do
     expect { Solver.solve(desired_composition: basic_composition, job_preferences: job_preferences) }.to raise_error(Solver::InsufficientPlayersError)
   end
 
-  it "errors when a solution cannot be found" do
+  it "returns an empty array when no solution can be found" do
     job_preferences = {
       "Yorvo Hawke": ["DRG"],
       "Squidgy Bunny": ["SMN"],
@@ -57,6 +57,6 @@ describe Solver do
       "Reye Fenris": ["BRD"],
     }
 
-    expect { Solver.solve(desired_composition: basic_composition, job_preferences: job_preferences) }.to raise_error(Solver::NoSolutionError)
+    expect(Solver.solve(desired_composition: basic_composition, job_preferences: job_preferences)).to eq([])
   end
 end
