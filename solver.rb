@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require "json"
 
 module Solver
   Candidate = Struct.new(:job, :rank, :player, keyword_init: true) do
     def <=>(other)
-      self.rank <=> other.rank
+      rank <=> other.rank
     end
   end
 
@@ -20,7 +22,7 @@ module Solver
 
     final_composition = {}
 
-    slots = desired_composition.sort {|a, b| a[1] <=> b[1]}.to_h
+    slots = desired_composition.sort_by { |a| a[1] }.to_h
 
     slots.each do |slot, count|
       count.times do
@@ -36,7 +38,7 @@ module Solver
 
         raise NoSolutionError.new("Could not find someone to fill the role of #{slot}") if candidates.empty?
 
-        candidate = candidates.sort.first
+        candidate = candidates.min
 
         final_composition[candidate.player] = candidate.job
 

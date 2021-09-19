@@ -1,15 +1,17 @@
+# frozen_string_literal: true
+
 require_relative "../../solver"
 
 describe Solver do
-  let(:basic_composition) {
+  let(:basic_composition) do
     basic_composition = {
       "ranged dps": 2,
       "melee dps": 2,
-      "tank": 2,
+      tank: 2,
       "barrier healer": 1,
       "pure healer": 1,
     }
-  }
+  end
 
   it "finds a solution" do
     job_preferences = {
@@ -38,7 +40,7 @@ describe Solver do
   end
 
   it "errors when there are not enough players" do
-    job_preferences = {"Yorvo Hawke": "DRG"}
+    job_preferences = { "Yorvo Hawke": "DRG" }
 
     expect { Solver.solve(desired_composition: basic_composition, job_preferences: job_preferences) }.to raise_error(Solver::InsufficientPlayersError)
   end
