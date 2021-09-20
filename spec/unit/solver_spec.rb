@@ -59,4 +59,20 @@ describe Solver do
 
     expect(Solver.solve(desired_composition: basic_composition, job_preferences: job_preferences)).to eq([])
   end
+
+  it "returns all of the possible permutations of a worst-case data set" do
+    job_preferences = {
+      "Yorvo Hawke": ["MNK", "DRG", "NIN", "BRD", "BLM", "SMN", "MCH", "SAM", "RDM", "DNC", "WAR", "GNB", "SCH", "WHM"],
+      "Squidgy Bunny": ["MNK", "DRG", "NIN", "BRD", "BLM", "SMN", "MCH", "SAM", "RDM", "DNC", "WAR", "GNB", "SCH", "WHM"],
+      "Renfleur Orinoux": ["MNK", "DRG", "NIN", "BRD", "BLM", "SMN", "MCH", "SAM", "RDM", "DNC", "WAR", "GNB", "SCH", "WHM"],
+      "Zelle Tamjin": ["MNK", "DRG", "NIN", "BRD", "BLM", "SMN", "MCH", "SAM", "RDM", "DNC", "WAR", "GNB", "SCH", "WHM"],
+      "Era Dere": ["MNK", "DRG", "NIN", "BRD", "BLM", "SMN", "MCH", "SAM", "RDM", "DNC", "WAR", "GNB", "SCH", "WHM"],
+      "Brando Id": ["MNK", "DRG", "NIN", "BRD", "BLM", "SMN", "MCH", "SAM", "RDM", "DNC", "WAR", "GNB", "SCH", "WHM"],
+      "Alleriana Valyrian": ["MNK", "DRG", "NIN", "BRD", "BLM", "SMN", "MCH", "SAM", "RDM", "DNC", "WAR", "GNB", "SCH", "WHM"],
+      "Reye Fenris": ["MNK", "DRG", "NIN", "BRD", "BLM", "SMN", "MCH", "SAM", "RDM", "DNC", "WAR", "GNB", "SCH", "WHM"],
+    }
+
+    # 8 permute 8 = 40320
+    expect(Solver.solve(desired_composition: basic_composition, job_preferences: job_preferences).length).to eq(40320)
+  end
 end

@@ -26,20 +26,21 @@ class Solver
       solution = solution_for_permutation(permutation)
       next if solution.nil?
 
-      error = Slots.mean_squared_error(solution)
+      error = solution.mean_squared_error
       if error == lowest_mean_squared_error
         potential_solutions.append(solution)
         next
       end
 
       if error < lowest_mean_squared_error
+        lowest_mean_squared_error = error
         potential_solutions.clear
         potential_solutions.append(solution)
         next
       end
     end
 
-    return potential_solutions.map{|c| Slots.to_standardized_output(c)}
+    return potential_solutions.map(&:to_standardized_output).uniq
   end
 
   class InsufficientPlayersError < RuntimeError
@@ -51,26 +52,14 @@ class Solver
   private
 
   def solution_for_permutation(player_names)
-    slots = Slots.initialize_from_composition(desired_composition)
+    slots = Slots.new(desired_composition)
 
     player_names.each do |player_name|
       player = Player.new(name: player_name, jobs: job_preferences.fetch(player_name))
-      return nil unless slot_player(slots, player)
+      return nil unless slots.assign(player)
     end
 
     return slots
-  end
-
-  def slot_player(slots, player)
-    player.jobs.each_with_index do |job, index|
-      placement_slot = slots.find { |slot| slot.satisfied_by?(job) }
-      if ! placement_slot.nil?
-        placement_slot.assign(job: job, player: player.name, rank: index)
-        return true
-      end
-    end
-
-    return false # because we couldn't find a slot for this player
   end
 
   Player = Struct.new(:name, :jobs, keyword_init: true)
